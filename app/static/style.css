@@ -105,6 +105,10 @@ h2 {
 .file-text {
     font-size: 1.1rem;
     color: var(--secondary-color);
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .submit-btn {

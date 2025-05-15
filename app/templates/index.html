@@ -22,9 +22,8 @@
                         <div class="file-input-container">
                             <input type="file" name="file" id="file" class="file-input" required>
                             <label for="file" class="file-label">
-                                <span class="file-icon">📄
-                                </span>
-                                <span class="file-text">Seleccionar archivo</span>
+                                <span class="file-icon">📄</span>
+                                <span class="file-text" id="file-name">Seleccionar archivo</span>
                             </label>
                         </div>
                         <button type="submit" class="submit-btn">Subir y Clasificar</button>
@@ -46,5 +45,12 @@
                 </a></p>
         </footer>
     </div>
+
+    <script>
+        document.getElementById('file').addEventListener('change', function() {
+            const fileName = this.files[0] ? this.files[0].name : 'Seleccionar archivo';
+            document.getElementById('file-name').textContent = fileName;
+        });
+    </script>
 </body>
 </html>
