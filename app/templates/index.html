@@ -18,15 +18,16 @@
             <div class="upload-section">
                 <div class="upload-box">
                     <h2>Subir Documento</h2>
-                    <form method="POST" enctype="multipart/form-data" class="upload-form">
+                    <form method="POST" enctype="multipart/form-data" class="upload-form" id="uploadForm">
                         <div class="file-input-container">
-                            <input type="file" name="file" id="file" class="file-input" required>
+                            <input type="file" name="file" id="file" class="file-input" required accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
                             <label for="file" class="file-label">
                                 <span class="file-icon">📄</span>
                                 <span class="file-text" id="file-name">Seleccionar archivo</span>
                             </label>
                         </div>
-                        <button type="submit" class="submit-btn">Subir y Clasificar</button>
+                        <div id="error-message" class="error-message"></div>
+                        <button type="submit" class="submit-btn" id="submitBtn">Subir y Clasificar</button>
                     </form>
                 </div>
             </div>
@@ -47,10 +48,45 @@
     </div>
 
     <script>
-        document.getElementById('file').addEventListener('change', function() {
-            const fileName = this.files[0] ? this.files[0].name : 'Seleccionar archivo';
-            document.getElementById('file-name').textContent = fileName;
-        });
+        const fileInput = document.getElementById('file');
+        const errorMessage = document.getElementById('error-message');
+        const submitBtn = document.getElementById('submitBtn');
+        const uploadForm = document.getElementById('uploadForm');
+
+        fileInput.addEventListener('change', function () {
+    const file = this.files[0];
+    if (file) {
+        const allowedTypes = [
+            'application/pdf',
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        ];
+        const allowedExtensions = ['.pdf', '.docx'];
+
+        const fileName = file.name;
+        const fileType = file.type;
+
+        const isValidType = allowedTypes.includes(fileType);
+        const isValidExtension = allowedExtensions.some(ext => fileName.toLowerCase().endsWith(ext));
+
+        document.getElementById('file-name').textContent = file.name;
+
+        if (!isValidType || !isValidExtension) {
+            errorMessage.textContent = 'Error: Solo se permiten archivos PDF y DOCX.';
+            errorMessage.style.display = 'block';
+            submitBtn.disabled = true;
+            this.value = ''; // Limpia el input
+            document.getElementById('file-name').textContent = 'Seleccionar archivo';
+        } else {
+            errorMessage.style.display = 'none';
+            submitBtn.disabled = false;
+        }
+    } else {
+        document.getElementById('file-name').textContent = 'Seleccionar archivo';
+        errorMessage.style.display = 'none';
+        submitBtn.disabled = false;
+    }
+});
+
     </script>
 </body>
 </html>

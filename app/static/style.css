@@ -239,7 +239,7 @@ footer {
     background-color: #34495e;
 }
 
-/* Responsive adjustments for result page */
+
 @media (max-width: 768px) {
     .result-container {
         padding: 1rem;
@@ -253,4 +253,29 @@ footer {
     .filename {
         font-size: 1rem;
     }
+}
+
+/* Estilos para el mensaje de error */
+.error-message {
+    color: #dc2626;
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+    background-color: #fee2e2;
+    border: 1px solid #fecaca;
+}
+
+.submit-btn:disabled {
+    background-color: #94a3b8;
+    cursor: not-allowed;
+}
+
+.submit-btn:disabled:hover {
+    background-color: #94a3b8;
+    transform: none;
+    box-shadow: none;
 }
