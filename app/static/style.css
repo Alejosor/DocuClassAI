@@ -152,3 +152,101 @@ footer {
 .ref-git{
     color: var(--primary-color);
 }
+
+/* Estilos para la página de resultados */
+.result-container {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 900px;
+}
+
+.document-info {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.file-details {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.file-icon {
+    font-size: 2rem;
+}
+
+.filename {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+.content-box {
+    background: var(--background-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.content-box h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.content-wrapper {
+    max-height: 500px;
+    overflow-y: auto;
+    background: white;
+    border-radius: 6px;
+    padding: 1rem;
+    border: 1px solid #eee;
+}
+
+.content-text {
+    font-family: 'Roboto Mono', monospace;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-color);
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.back-btn {
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #34495e;
+}
+
+/* Responsive adjustments for result page */
+@media (max-width: 768px) {
+    .result-container {
+        padding: 1rem;
+        margin: 1rem;
+    }
+
+    .content-wrapper {
+        max-height: 400px;
+    }
+
+    .filename {
+        font-size: 1rem;
+    }
+}
