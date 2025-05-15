@@ -2,13 +2,50 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>DocuClassAI - Subir Documento</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocuClassAI - Sistema de Gestión Documental</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Subir documento</h1>
-    <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="file" required>
-        <button type="submit">Subir y Clasificar</button>
-    </form>
+    <div class="container">
+        <header>
+            <h1>DocuClassAI</h1>
+            <p class="subtitle">Sistema Inteligente de Gestión Documental</p>
+        </header>
+        
+        <main>
+            <div class="upload-section">
+                <div class="upload-box">
+                    <h2>Subir Documento</h2>
+                    <form method="POST" enctype="multipart/form-data" class="upload-form">
+                        <div class="file-input-container">
+                            <input type="file" name="file" id="file" class="file-input" required>
+                            <label for="file" class="file-label">
+                                <span class="file-icon">📄
+                                    <img src="" alt="idk">
+                                </span>
+                                <span class="file-text">Seleccionar archivo</span>
+                            </label>
+                        </div>
+                        <button type="submit" class="submit-btn">Subir y Clasificar</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2024 DocuClassAI - Gestión Inteligente de Documentos</p>
+            <p>Desarrollado por: <a href="" target="_blank">
+                <a href="https://github.com/Alejosor" target="_blank" class="ref-git">
+                  Alejandro  
+                </a>
+                <a>y</a>
+                <a href="https://github.com/PetusoTwo" target="_blank" class="ref-git">
+                    Pedro
+                </a>
+                </a></p>
+        </footer>
+    </div>
 </body>
 </html>
