@@ -279,3 +279,11 @@ footer {
     transform: none;
     box-shadow: none;
 }
+/* Vista previa del documento PDF */
+.file-preview {
+    width: 100%;
+    height: 500px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+}

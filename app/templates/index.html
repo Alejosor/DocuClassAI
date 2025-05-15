@@ -29,21 +29,20 @@
                         <div id="error-message" class="error-message"></div>
                         <button type="submit" class="submit-btn" id="submitBtn">Subir y Clasificar</button>
                     </form>
+
+                    <!-- Vista previa del archivo -->
+                    <iframe id="preview" class="file-preview" style="display: none;" frameborder="0"></iframe>
                 </div>
             </div>
         </main>
 
         <footer>
             <p>© 2025 DocuClassAI - Gestión Inteligente de Documentos</p>
-            <p>Desarrollado por: <a href="" target="_blank">
-                <a href="https://github.com/Alejosor" target="_blank" class="ref-git">
-                  Alejandro  
-                </a>
+            <p>Desarrollado por: 
+                <a href="https://github.com/Alejosor" target="_blank" class="ref-git">Alejandro</a>
                 <a>y</a>
-                <a href="https://github.com/PetusoTwo" target="_blank" class="ref-git">
-                    Pedro
-                </a>
-                </a></p>
+                <a href="https://github.com/PetusoTwo" target="_blank" class="ref-git">Pedro</a>
+            </p>
         </footer>
     </div>
 
@@ -87,6 +86,25 @@
     }
 });
 
+        const fileNameText = document.getElementById('file-name');
+        const preview = document.getElementById('preview');
+
+        fileInput.addEventListener('change', function () {
+            const file = this.files[0];
+            fileNameText.textContent = file ? file.name : 'Seleccionar archivo';
+
+            if (file && file.type === "application/pdf") {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.style.display = "none";
+                preview.src = "";
+            }
+        });
     </script>
 </body>
 </html>
