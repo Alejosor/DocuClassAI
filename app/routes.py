@@ -1,27 +1,31 @@
-from app import app 
-from flask import Flask, render_template, request, redirect, url_for
+from app import app
+from flask import render_template, request
 import os
 from werkzeug.utils import secure_filename
 import PyPDF2
 import pickle
 
-# Ruta donde está el modelo entrenado
+# Rutas del modelo y vectorizador
 MODEL_PATH = os.path.join(os.path.dirname(__file__), '..', 'document_classifier.pkl')
+VECTORIZER_PATH = os.path.join(os.path.dirname(__file__), '..', 'vectorizer.pkl')
 
-# Cargar modelo entrenado
+# Cargar modelo y vectorizador entrenados
 with open(MODEL_PATH, 'rb') as f:
     model = pickle.load(f)
+
+with open(VECTORIZER_PATH, 'rb') as f:
+    vectorizer = pickle.load(f)
 
 # Configuración de la carpeta de subida
 UPLOAD_FOLDER = os.path.join('static', 'uploads')
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# Inicialización de Flask
+# Configuración Flask
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    print("✅ Entrando a la ruta principal '/'")  # Depuración
+    print("✅ Entrando a la ruta principal '/'")
     if request.method == 'POST':
         uploaded_file = request.files['file']
         if uploaded_file.filename != '':
@@ -36,8 +40,9 @@ def index():
                 for page in reader.pages:
                     content += page.extract_text() or ""
 
-            # Clasificar el contenido
-            predicted_category = model.predict([content])[0]
+            # Transformar el texto antes de clasificar
+            transformed = vectorizer.transform([content])
+            predicted_category = model.predict(transformed)[0]
 
             return render_template('result.html',
                                    filename=filename,
@@ -50,6 +55,3 @@ def index():
 def result():
     print("🧪 Entrando a la ruta /result")
     return render_template('result.html')
-
-if __name__ == '__main__':
-    app.run(debug=True)
